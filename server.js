@@ -13,12 +13,18 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app); // wrap express with http
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://skill-bridge-git-main-saniya-mahesh-patils-projects.vercel.app"
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // frontend URL
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
   },
 });
+
 
 // Middleware
 app.use(cors());
